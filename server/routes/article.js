@@ -6,8 +6,6 @@ require('dotenv').config()
 var jwt = require('jsonwebtoken');
 
 function middleware (req,res,next) {
-  // console.log(req.headers);
-  // process.env.TOKEN_SECRET_KEY
   if (req.headers.hasOwnProperty('token')) {
     jwt.verify(req.headers.token, process.env.TOKEN_SECRET_KEY, function(err, decoded) {
       if (decoded.username != null) {
@@ -24,12 +22,8 @@ function middleware (req,res,next) {
   }
 }
 
-
-// router.get('/', middleware, articleController.findAll); //checked
-// router.post('/', articleController.create);//checked
 router.get('/', articleController.findAll); //checked
 router.post('/', middleware, articleController.create);//checked
-// router.post('/', articleController.create);//checked
 router.get('/:id', articleController.findOne); //checked
 router.get('/category/:cat', articleController.findByCategory); //checked
 router.get('/author/:author', articleController.findByAuthor); //checked

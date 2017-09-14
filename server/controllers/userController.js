@@ -65,16 +65,4 @@ module.exports = {
       res.send('user is destroyed');
     })
   }
-  // ,
-  // update: function (req,res) {
-  //         User.where({
-  //           _id: req.params.id
-  //         })
-  //         .update({
-  //           name: req.body.name
-  //         })
-  //         .then(function (data) {
-  //           res.send(data);
-  //         })
-  // }
 }
