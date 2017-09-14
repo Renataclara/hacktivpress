@@ -1,20 +1,22 @@
 <template>
   <div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Want to see articles by an author?</strong> CLICK the black BOX with your favourite author name at the HOME page only :)
+    </div>
     <Addarticle></Addarticle>
     <div class="list-group" v-for='(list, index) in lists'>
       <div class="list-group-item list-group-item-action flex-column align-items-start">
-      <!-- <router-link :to="`/home/${list._id}`" class="list-group-item list-group-item-action flex-column align-items-start"> -->
-
         <div class="d-flex w-100 justify-content-between">
           <router-link :to="`/${list._id}`"><h3 class="mb-1">{{list.title}}</h3>
           </router-link>
 
            <small>
-             <!-- <router-link :to="`category/${list.category}`"> -->
                <h5>
                 <span class="badge badge-primary">{{list.category}}</span>
               </h5>
-            <!-- </router-link> -->
          </small>
         </div>
         <router-link :to="`author/${list.author._id}`">
@@ -23,12 +25,9 @@
           </h5>
         </router-link>
          <small>
-        <button type="button" @click="deleteArticle(`${list._id}`)" class="btn btn-outline-danger btn-sm">X</button>
-         <!-- <small>by {{list.userid.name}}</small> -->
-         <!-- <small v-if="list.userid.name === null">by {{list.name}}</small> -->
-         <!-- <button type="button" @click="deleteArticle(`${list._id}`)" class="btn btn-outline-danger btn-sm">X</button> -->
-         <!-- Button trigger modal -->
-        <button type="button" @click="getArticle(`${list._id}`)" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#exampleModalLong">
+
+        <button v-if="userid === list.author._id || userid === list.author" type="button" @click="deleteArticle(`${list._id}`)" class="btn btn-outline-danger btn-sm">X</button>
+        <button v-if="userid === list.author._id || userid === list.author" type="button" @click="getArticle(`${list._id}`)" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#exampleModalLong">
           Edit
         </button>
 
@@ -75,7 +74,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Addarticle from '@/components/addarticle'
 
 export default {
@@ -122,11 +121,10 @@ export default {
   computed: {
     lists () {
       return this.$store.state.mainlist
-    }
-    // ,
-    // nets () {
-    //   return this.$store.getters.nets
-    // },
+    },
+    ...mapState([
+      'userid'
+    ])
   },
   created () {
     // if (localStorage.getItem('token') == null) {

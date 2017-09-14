@@ -38,6 +38,11 @@ module.exports = {
     Article.find({
       author: req.params.author
     })
+    .populate({
+      path: 'author',
+      model: 'User',
+      select: 'name _id'
+    })
     .then(function (data) {
       res.send(data);
     })

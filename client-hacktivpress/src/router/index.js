@@ -6,6 +6,7 @@ import signin from '@/components/signin'
 import mainlist from '@/components/mainlist'
 import Subarticle from '@/components/Subarticle'
 import Subcategory from '@/components/Subcategory'
+import Subauthor from '@/components/Subauthor'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
         {
           path: 'category/:cat',
           component: Subcategory,
+          props: true
+        },
+        {
+          path: 'author/:author',
+          component: Subauthor,
           props: true
         }
       ]

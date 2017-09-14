@@ -1,8 +1,25 @@
 <template>
   <div>
+    <h1>Category</h1>
+    <h2>{{articles[0].category}}</h2>
     <div v-for='(article , idx) in articles'>
-      <h3> {{article.title}} </h3><br>
-      <p> {{article.content}} </p>
+      <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <router-link :to="`/${article._id}`"><h3 class="mb-1">{{article.title}}</h3>
+          </router-link>
+
+           <small>
+             <!-- <router-link :to="`category/${article.category}`"> -->
+               <h5>
+                <span class="badge badge-primary">{{article.category}}</span>
+              </h5>
+            <!-- </router-link> -->
+         </small>
+        </div>
+          <h5 class="mb-1">
+            <span class="badge badge-dark"> by {{article.author.name}}</span>
+          </h5>
+        </div>
     </div>
   </div>
 </template>
