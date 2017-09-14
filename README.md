@@ -7,10 +7,11 @@ List of user routes:
 Route | Houte | Description
 ------------ | ------------- | -------------
 /signup | POST | Sign up with new user info
-/singin | POST | Sign up while get an access token based on credentials
+/signin | POST | Sign up while get an access token based on credentials
 / | GET | Get all articles
 /:id | GET | Get article info by id
-/category/:cat | GET | Get articles by category
+/category/:cat | GET | Get articles by category name
+/author/:author | GET | Get articles by author id
 / | POST | Create an article
 /:id | DELETE | Delete an article (only the user who made it)
 /:id | PUT | Update an article (only the user who made it)

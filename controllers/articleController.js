@@ -12,6 +12,11 @@ module.exports = {
   findAll: function (req,res) {
     Article.find({
     })
+    .populate({
+      path: 'author',
+      model: 'User',
+      select: 'name _id'
+    })
     .then(function (data) {
       res.send(data);
     })
@@ -20,11 +25,16 @@ module.exports = {
     Article.find({
       category: req.params.cat
     })
+    .populate({
+      path: 'author',
+      model: 'User',
+      select: 'name _id'
+    })
     .then(function (data) {
       res.send(data);
     })
   },
-  findByCategory: function (req,res) {
+  findByAuthor: function (req,res) {
     Article.find({
       author: req.params.author
     })
@@ -48,6 +58,11 @@ module.exports = {
   findOne: function (req,res) {
     Article.find({
       _id: req.params.id
+    })
+    .populate({
+      path: 'author',
+      model: 'User',
+      select: 'name _id'
     })
     .then(function (data) {
       res.send(data);
