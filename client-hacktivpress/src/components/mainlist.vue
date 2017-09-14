@@ -41,14 +41,14 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form @submit.prevent='editArticle(formQuestion)'>
+                <form @submit.prevent='editArticle(formArticle)'>
                   <div class="form-group">
                   <label for="title">Article title</label>
-                  <input v-model='formQuestion.title' type="text" class="form-control" id="title" placeholder="Article Title">
+                  <input v-model='formArticle.title' type="text" class="form-control" id="title" placeholder="Article Title">
                   </div>
                   <div class="form-group">
                   <label for="body">Category</label>
-                  <select v-model='formQuestion.category' class="custom-select">
+                  <select v-model='formArticle.category' class="custom-select">
                     <option value="love">love</option>
                     <option value="tech">tech</option>
                     <option value="music">music</option>
@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-group">
                   <label for="content">Cotent</label>
-                  <input v-model='formQuestion.content' type="text" class="form-control" id="content" placeholder="Content">
+                  <input v-model='formArticle.content' type="text" class="form-control" id="content" placeholder="Content">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -65,8 +65,6 @@
           </div>
         </div>
         </small>
-        <!-- end of modal -->
-      <!-- </router-link> -->
       </div>
     </div>
   </div>
@@ -83,9 +81,7 @@ export default {
   },
   data () {
     return {
-      // editquestions: [],
-      // id: null,
-      formQuestion: {
+      formArticle: {
         title: null,
         category: null,
         content: null
@@ -97,20 +93,17 @@ export default {
       'getArticles',
       'deleteArticle',
       'editArticle'
-      // 'vote'
     ]),
-    // ,
     getArticle (id) {
       this.id = id
       this.$http.get(`/${id}`)
-      // axios.get('http://localhost:3000')
       .then((data) => {
-        this.editquestions = data.data
-        console.log(this.editquestions, 'ini tohhh')
-        this.formQuestion._id = this.editquestions[0]._id
-        this.formQuestion.title = this.editquestions[0].title
-        this.formQuestion.category = this.editquestions[0].category
-        this.formQuestion.content = this.editquestions[0].content
+        this.editarticle = data.data
+        console.log(this.editarticle, 'ini tohhh')
+        this.formArticle._id = this.editarticle[0]._id
+        this.formArticle.title = this.editarticle[0].title
+        this.formArticle.category = this.editarticle[0].category
+        this.formArticle.content = this.editarticle[0].content
         console.log('====================================')
       })
       .catch((error) => {
@@ -127,11 +120,7 @@ export default {
     ])
   },
   created () {
-    // if (localStorage.getItem('token') == null) {
-    //   this.$router.push({ path: '/signup' })
-    // } else {
     this.getArticles()
-    // }
   }
 }
 </script>

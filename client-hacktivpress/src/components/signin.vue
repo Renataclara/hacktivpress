@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
          <div class="col-sm-12">
-            <form @submit='getSignin'> 
+            <form @submit='getSignin'>
               <div class="form-group">
                 <label for="signupEmail">Email address</label>
                 <input v-model='username' type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp" placeholder="Enter email">
@@ -13,8 +13,8 @@
                 <label for="signupPassword">Password</label>
                 <input v-model='password' type="password" class="form-control" id="signupPassword" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <router-link class="nav-link" to="/signup">Don't have an account yet? Sign up now</router-link>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <router-link class="nav-link" to="/signup">Don't have an account yet? Sign up now</router-link>
             </form>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default {
         localStorage.setItem('token', this.signin.token)
         localStorage.setItem('id', this.signin.id)
         localStorage.setItem('name', this.signin.name)
-        this.$router.push({path: '/'}) // push to history
+        this.$router.push({path: '/'})
         this.login()
       })
       .catch((error) => {
@@ -61,7 +61,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

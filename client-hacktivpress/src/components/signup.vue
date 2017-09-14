@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
          <div class="col-sm-12">
-          <form @submit='getSignup'> 
+          <form @submit='getSignup'>
             <div class="form-group">
               <label for="signupName">Name</label>
               <input v-model='name' class="form-control" id="signupName" placeholder="Your name">
@@ -28,7 +28,6 @@
 
 <script>
 export default {
-  // props: ['perarticle'],
   data () {
     return {
       username: null,
@@ -48,7 +47,7 @@ export default {
       .then((data) => {
         this.signup = data.data
         console.log('signup data', this.signup)
-        this.$router.push({path: '/signin'}) // push to history
+        this.$router.push({path: '/signin'})
       })
       .catch((error) => {
         console.log(error)
@@ -58,7 +57,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

@@ -7,14 +7,11 @@
         <div class="d-flex w-100 justify-content-between">
           <router-link :to="`/${article._id}`"><h3 class="mb-1">{{article.title}}</h3>
           </router-link>
-
-           <small>
-             <!-- <router-link :to="`category/${article.category}`"> -->
-               <h5>
-                <span class="badge badge-primary">{{article.category}}</span>
-              </h5>
-            <!-- </router-link> -->
-         </small>
+          <small>
+            <h5>
+              <span class="badge badge-primary">{{article.category}}</span>
+            </h5>
+          </small>
         </div>
         <router-link :to="`author/${article.author._id}`">
           <h5 class="mb-1">
@@ -27,7 +24,6 @@
 </template>
 
 <script>
-// var axios = require('axios')
 export default {
   props: ['author'],
   data () {
@@ -37,10 +33,7 @@ export default {
   },
   methods: {
     getArticle () {
-      // console.log('halo sblm axios')
-      // var self = this
       this.$http.get(`author/${this.author}`)
-      // axios.get('http://localhost:3000')
       .then((data) => {
         this.articles = data.data
         console.log(this.articles, 'this is self articles per author')

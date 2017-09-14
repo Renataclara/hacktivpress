@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
@@ -21,6 +21,12 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/category/coding">Coding</router-link>
+          </li>
+          <li v-if='userid === null' class="nav-item">
+            <router-link class="nav-link" to="/signin">Sign in</router-link>
+          </li>
+          <li v-if='userid === null' class="nav-item">
+            <router-link class="nav-link" to="/signup">Join us</router-link>
           </li>
           <li v-if='userid !== null' class="nav-item" @click='logout'>
             <router-link class="nav-link" to="/signin">Logout</router-link>

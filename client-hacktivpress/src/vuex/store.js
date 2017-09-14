@@ -27,12 +27,11 @@ const store = new Vuex.Store({
       state.mainlist = payload
       console.log('this is mainlist at store', state.mainlist)
     },
-    saveQuestion (state, payload) {
+    saveArticle (state, payload) {
       state.mainlist.push(payload)
-      console.log('question yg baru di save', payload)
     },
     savedEdited (state, payload) {
-      console.log('id question yg mau di edit', payload._id)
+      console.log('id article yg mau di edit', payload._id)
       console.log('data edited', payload)
       const idxedt = state.mainlist.findIndex((list) => (list._id === payload._id))
       console.log('the index of the edited', idxedt)
@@ -42,14 +41,10 @@ const store = new Vuex.Store({
       state.mainlist[idxedt].category = payload.category
       console.log('result of edited', state.mainlist[idxedt])
     },
-    deleteQuestion (state, payload) {
-      // console.log('id question yg mau di delete', payload)
-      // const idx = state.mainlist.findIndex((list) => (list._id === payload))
-      // console.log('the index of the deleted', idx)
-      // state.mainlist.splice(idx, 1)
-      const filteredQuestion = state.mainlist.filter((list) => list._id !== payload)
-      console.log('the filtered questions', filteredQuestion)
-      state.mainlist = filteredQuestion
+    deleteArticle (state, payload) {
+      const filteredArticle = state.mainlist.filter((list) => list._id !== payload)
+      console.log('the filtered articles', filteredArticle)
+      state.mainlist = filteredArticle
     }
   },
   actions: {
@@ -74,9 +69,9 @@ const store = new Vuex.Store({
           console.log(error)
         })
     },
-    submitQuestion ({ commit, state }, payload) {
+    submitArticle ({ commit, state }, payload) {
       console.log('halo sblm axios')
-      console.log('this is the payload to submit new question in store', payload)
+      console.log('this is the payload to submit new article in store', payload)
       axios.post('http://localhost:3000', payload, {
         headers: {
           token: localStorage.getItem('token')
@@ -84,18 +79,18 @@ const store = new Vuex.Store({
       })
       .then((data) => {
         console.log('this is the one !!!Q##@', data.data)
-        // data.data.author = {
-        //   _id: state.userid,
-        //   name: state.name
-        // }
-        commit('saveQuestion', data.data)
+        data.data.author = {
+          _id: state.userid,
+          name: state.name
+        }
+        commit('saveArticle', data.data)
       })
       .catch((error) => {
         console.log(error)
       })
     },
-    deleteArticle ({ commit }, questionid) {
-      axios.delete(`http://localhost:3000/${questionid}`, {
+    deleteArticle ({ commit }, articleid) {
+      axios.delete(`http://localhost:3000/${articleid}`, {
       }, {
         headers: {
           token: localStorage.getItem('token')
@@ -103,7 +98,7 @@ const store = new Vuex.Store({
       })
       .then((data) => {
         console.log('hasil delete', data)
-        commit('deleteQuestion', questionid)
+        commit('deleteArticle', articleid)
       })
       .catch((error) => {
         console.log(error)
