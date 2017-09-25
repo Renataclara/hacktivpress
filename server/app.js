@@ -13,7 +13,7 @@ var app = express();
 const cors = require('cors')
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://renata:<LOVE44@ever>@atlas-start-shard-00-00-afgyk.mongodb.net:27017,atlas-start-shard-00-01-afgyk.mongodb.net:27017,atlas-start-shard-00-02-afgyk.mongodb.net:27017/test?ssl=true&replicaSet=atlas-start-shard-0&authSource=admin');
+mongoose.connect('mongodb://renata:renata123@atlas-start-shard-00-00-afgyk.mongodb.net:27017,atlas-start-shard-00-01-afgyk.mongodb.net:27017,atlas-start-shard-00-02-afgyk.mongodb.net:27017/test?ssl=true&replicaSet=atlas-start-shard-0&authSource=admin');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
